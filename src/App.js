@@ -15,6 +15,9 @@ export default class App extends Component {
     if(calcButton === '=' && this.state.userInput.length > 1) {
       this.doMath();
     } 
+
+    // Always try to delete your commented-out code! You rarely need it, and there's always undo and git if you do.
+
     // else if(calcButton === '(-)') {
     //   this.setState({
     //     userInput: Math.abs(this.state.userInput) + calcButton
@@ -66,6 +69,7 @@ export default class App extends Component {
 }
 
 
+// Always try to delete your commented-out code! You rarely need it, and there's always undo and git if you do.
 
 // import Numbers from './components/Numbers'
 // import './App.css';
