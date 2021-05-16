@@ -7,6 +7,11 @@ export default class Keypad extends Component {
     render() {
         return (
             <div className="buttons">
+        {/*You might consider making these buttons an array you could map over.*/}
+
+        {/*If you had an array of those button names, you could do something like*/}
+        {/*this instead of all the button tags below:*/}
+        {/*buttons.map((button) => <button name={button.name} onClick={this.buttonPress}>{button.name}</button>)*/}
                 <button name="1" onClick={this.buttonPress}>1</button>
                 <button name="2" onClick={this.buttonPress}>2</button>
                 <button name="3" onClick={this.buttonPress}>3</button>
