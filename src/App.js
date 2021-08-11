@@ -1,84 +1,62 @@
-import React, { Component } from 'react'
-import Keypad from "./components/Keypad"
+import React, { Component } from "react";
+import Keypad from "./components/Keypad";
+import Display from "./components/Display";
 import "./App.css";
-import Display from "./components/Display"
 
 export default class App extends Component {
   constructor() {
-    super()
-    this.state ={
-      userInput:"",
-    }
+    super();
+    this.state = {
+      userInput: "",
+    };
   }
 
   buttonPress = (calcButton) => {
-    if(calcButton === '=' && this.state.userInput.length > 1) {
+    if (this.state.userInput.length < 2) {
+      this.setState({ userInput: this.state.userInput + calcButton });
+    }
+    if (calcButton === "=" && this.state.userInput.length > 1) {
       this.doMath();
-    } 
-    // else if(calcButton === '(-)') {
-    //   this.setState({
-    //     userInput: Math.abs(this.state.userInput) + calcButton
-    //   })
-    // }
-    else if(calcButton === 'C') {
-      this.calculatorReset()
+    } else if (calcButton === "C") {
+      this.calculatorReset();
+    } else if (calcButton === "+/-") {
+      this.handleNegative();
     } else {
       this.setState({
-        userInput: this.state.userInput + calcButton
-      })
-    
-      
+        userInput: this.state.userInput + calcButton,
+      });
     }
-  }
+  };
+  handleNegative = () => {
+    this.setState({ userInput: this.state.userInput * -1 });
+  };
 
   calculatorReset = () => {
     this.setState({
-      userInput: ""})
-  }
+      userInput: "0",
+    });
+  };
 
-  doMath = () =>  {
+  doMath = () => {
     try {
-    this.setState({
-      userInput: eval(this.state.userInput)
-    })
-  } catch (e) {
-    this.setState({
-      userInput: "Error..."
-    })
-  }
-  }
+      this.setState({
+        userInput: Math.floor(eval(this.state.userInput)),
+      });
+    } catch (e) {
+      this.setState({
+        userInput: "Error...",
+      });
+    }
+  };
 
   render() {
-  
     return (
-      
-        <div className="App">
-          <div className="keypad">
-          <Display userInput={this.state.userInput}/>
+      <div className="App">
+        <div className="keypad">
+          <Display userInput={this.state.userInput} />
           <Keypad buttonPress={this.buttonPress} />
-          </div>
         </div>
-        
-        
-  
-    )
+      </div>
+    );
   }
 }
-
-
-
-// import Numbers from './components/Numbers'
-// import './App.css';
-
-// import Operators from './components/Operators';
-
-// function App() {
-//   return (
-//     <>
-//       
-    
-//     </>
-//   );
-// }
-
-// export default App;
